@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        class Person {
+
+            constructor(fullNameValue, celiacValue, heightValue, hobbiesValue) {
+                this.fullName = fullNameValue
+                this.celiac = celiacValue
+                this.height = heightValue
+                this.hobbies = hobbiesValue
+            }
+
+            learnNewHobby(hobbyToLearn) {
+                this.hobbies.push(hobbyToLearn)
+            }
+        }
+
+        const person1 = new Person('Germán Álvarez', false, 1.89, ['sky', 'beer'])
+        const person2 = new Person('Sara Whatever', true, 1.99, ['gadgets', 'beer'])
+
+        console.log('LA PERSONA SE LLAMA', person1.fullName)
+
+        person1.learnNewHobby('Paddle')
+        console.log('Estos son ahora los hobbies de la persona 1', person1.hobbies)
+
+        person1.learnNewHobby('Surfing')
+        console.log('Estos son ahora los hobbies de la persona 1', person1.hobbies)
+
+    </script>
+</body>
+
+</html>

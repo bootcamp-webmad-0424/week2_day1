@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        // In the global scope
+        console.log(this)
+
+
+
+        // In the function scope
+        function printThis() {
+            console.log(this);
+        }
+
+        printThis()
+
+
+
+        // In an object method
+        const example = {
+            name: 'Ger',
+            weight: 89,
+            walk() {
+                console.log('LA PERSONA', this.name, 'CAMINA')
+            }
+        }
+
+        example.walk()
+
+
+
+        console.log('-----')
+
+
+
+        // Accessing an objects properties from a nested funcion
+        const person = {
+            fullName: 'Ger',
+            weight: 89,
+            walk1() {                           // ERROR: El contexto de la funcion es window
+                setInterval(function () {
+                    this.weight -= .1
+                    console.log('Ahora la persona pesa', this.weight)
+                }, 1000)
+            },
+            walk2() {                           // ERROR: ñapa máxima
+                let that = this
+                setInterval(function () {
+                    that.weight -= .1
+                    console.log('Ahora la persona pesa', that.weight)
+                }, 1000)
+            },
+            walk3() {                           // SUCCESS! Las funciones flecha no reorientan el contexto
+                setInterval(() => {
+                    this.weight -= .1
+                    console.log('Ahora la persona pesa', this.weight)
+                }, 1000)
+            },
+        }
+
+        // person.walk1()
+        // person.walk2()
+        person.walk3()
+
+
+
+    </script>
+</body>
+
+</html>

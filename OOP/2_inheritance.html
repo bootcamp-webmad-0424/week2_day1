@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        class User {
+
+            constructor(usernameValue, emailValue) {
+                this.username = usernameValue
+                this.email = emailValue
+                this.tokens = 100
+                this.tokenPrice = 50
+                this.cash = 100
+                this.active = true
+            }
+
+            buyTokens(tokensQuantity) {
+
+                const totalTokensCost = tokensQuantity * this.tokenPrice
+
+                if (this.cash >= totalTokensCost) {
+                    this.tokens += tokensQuantity
+                    this.cash -= totalTokensCost
+                } else {
+                    throw new Error(`Necesitas ${totalTokensCost}€ para comprar ${tokensQuantity} tokens`)
+                }
+            }
+
+            chargeCash(amount) {
+                this.cash += amount
+            }
+        }
+
+
+        const user1 = new User('German', 'ger@msn.es')
+
+        console.log('EL USUARIO SE LLAMA', user1.username, 'Y TIENE', user1.tokens, 'tokens')
+
+        // user1.buyTokens(20)              // Exception! D:
+        user1.chargeCash(2500)
+        user1.buyTokens(30)
+
+        console.log('EL USUARIO TIENE', user1.tokens, 'tokens')
+
+
+        console.log('-------')
+
+
+
+
+
+        class Player extends User {
+
+            constructor(usernameValue, emailValue, nickValue) {
+                super(usernameValue, emailValue)
+                this.nick = nickValue
+                this.lives = 3
+            }
+
+            changeNick(newNick) {
+                this.nick = newNick
+            }
+        }
+
+        const player1 = new Player('Sara Whatever', 'hola@msn.es', 'RuBiSeLaH_89')
+
+        console.log('ESTE JUGADOR/A SE LLAMA', player1.nick, 'PERO EN REALIDAD ES', player1.username)
+
+        player1.changeNick('MoReNiKaH_99')
+
+        console.log('ESTE JUGADOR/A SE LLAMA', player1.nick, 'PERO EN REALIDAD ES', player1.username)
+
+        player1.buyTokens(1)
+
+        console.log('Y AHORA TIENE', player1.tokens, 'TOKENS')
+
+
+
+
+        console.log('-------')
+
+
+
+        class Witch extends Player {
+
+            constructor(usernameValue, emailValue, nickValue, whisperValue) {
+                super(usernameValue, emailValue, nickValue)
+                this.whisper = whisperValue
+            }
+
+            makeWhisper() {
+                console.log('LA BRUJA', this.nick, '(QUE EN REALIDAD SE LLAMA', this.username, ') TE ATACÓ CON', this.whisper)
+            }
+        }
+
+
+        const witch1 = new Witch('Conchi Ramirez', 'hey@aol.es', 'Piruja98', 'Abracadabra!')
+
+        witch1.makeWhisper()
+
+
+
+
+        console.log('------')
+
+
+
+        class Gnome extends Player {
+
+            constructor(usernameValue, emailValue, nickValue, attackValue) {
+                super(usernameValue, emailValue, nickValue)
+                this.attack = attackValue
+            }
+
+            makeAttack() {
+                console.log('EL GNOMO', this.nick, 'TE ATACÓ CON', this.attack, '... ¡QUÉ GUARRO!')
+            }
+        }
+
+        const finalGnome = new Gnome('Raúl Whatever', 'kshgbs@msn.es', 'David el gnomo', 'Escupitajos verdes')
+
+        finalGnome.makeAttack()
+
+
+
+    </script>
+</body>
+
+</html>

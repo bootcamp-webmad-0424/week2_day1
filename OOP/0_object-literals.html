@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const person = {
+            name: 'German Álvarez',
+            celiac: false,
+            height: 1.89,
+            favDrink: 'Monster Mango Loco Ultra Fiesta Party',
+            occupation: {
+                position: 'Lead Teacher',
+                company: 'Ironhack'
+            },
+            birth: new Date(1986, 23, 4),
+            hobbies: ['Ski', 'Gadgets', 'Rave'],
+            subscriptions: [
+                {
+                    service: 'Spotify',
+                    cost: 9.99
+                },
+                {
+                    service: 'HBO',
+                    cost: 12.99
+                }
+            ],
+            learnNewHobby(hobbytoLearn) {
+                this.hobbies.push(hobbytoLearn)
+            },
+            buySubscription(subscriptionService, subscriptionCost) {
+
+                const newSubscription = {
+                    service: subscriptionService,
+                    cost: subscriptionCost
+                }
+
+                this.subscriptions.push(newSubscription)
+            },
+            getTotalSubscriptionsCost() {
+                let totalCost = 0
+
+                this.subscriptions.forEach(eachSubscription => {
+                    totalCost += eachSubscription.cost
+                })
+
+                return totalCost
+            }
+        }
+
+        person.learnNewHobby('Swimming')
+        person.learnNewHobby('Dancing')
+        console.log('ahora mis hobbies son', person.hobbies)
+
+
+        person.buySubscription('Disney+', 9.5)
+        console.log(person.subscriptions)
+
+
+        const totalCost = person.getTotalSubscriptionsCost()
+        console.log('Me dejo', totalCost, '€ en suscripciones...')
+
+    </script>
+</body>
+
+</html>
